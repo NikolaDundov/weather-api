@@ -2,6 +2,7 @@ const apiKey = "69d052cf9568072312ddaa6fc7450571";
 const apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=";
 const limits = "&limit=1&appid=";
 
+
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
@@ -29,10 +30,15 @@ else{
     let units = "metric";
 
     let locationUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=`
+    let pollutionApi = `http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`
 
     const responseCity = await fetch(locationUrl +  apiKey);
     var dataFromCity = await responseCity.json();
-        console.log(responseCity);
+
+    const responsePoluution = await fetch(pollutionApi);
+    var pollutionIndex = await responsePoluution.json();
+
+        console.log(pollutionIndex.list[0].components);
 
         document.querySelector(".city").innerHTML = dataFromCity.name;
         document.querySelector(".temp").innerHTML = Math.round(dataFromCity.main.temp, 0) + "°C";
