@@ -44,6 +44,7 @@ else{
         document.querySelector(".temp").innerHTML = Math.round(dataFromCity.main.temp, 0) + "°C";
         document.querySelector(".humidity").innerHTML = dataFromCity.main.humidity + " %";
         document.querySelector(".wind").innerHTML = dataFromCity.wind.speed + " m/s";
+        document.querySelector(".polution").innerHTML = pollutionIndex.list[0].components.no2 + " NO2";
 
         let weatherCondition = dataFromCity.weather[0].main.toLowerCase();
         if (weatherCondition == "clouds"){
